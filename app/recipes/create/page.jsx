@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { storage } from "../../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"; // Added getDownloadURL import
+import { db } from "../../../firebase";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 
 export default function CreateRecipe() {
   const [title, setTitle] = useState("");
@@ -15,7 +17,6 @@ export default function CreateRecipe() {
   };
 
   const handleSubmit = (e) => {
-    // Fixed the function name to handleSubmit
     e.preventDefault();
 
     const storageRef = ref(storage, file.name);
